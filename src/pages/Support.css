@@ -1,0 +1,153 @@
+.support-page{
+    max-width:900px;
+    margin:0 auto;
+    padding:32px;
+}
+
+.support-header{
+    text-align:center;
+    margin-bottom:32px;
+}
+
+.support-header svg{
+    color:#3b82f6;
+    margin-bottom:16px;
+}
+
+.support-header h1{
+    color:#fff;
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.support-header p{
+    color:#94a3b8;
+    font-size:15px;
+}
+
+.support-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:24px;
+    margin-bottom:20px;
+
+    background:rgba(17,24,39,.75);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:22px;
+
+    transition:.35s;
+
+    color:white;
+}
+
+.support-card.clickable{
+    cursor:pointer;
+}
+
+.support-card.clickable:hover{
+    transform:translateY(-4px);
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 15px 40px rgba(37,99,235,.28);
+}
+
+.support-card.disabled{
+    opacity:.82;
+}
+
+.support-icon{
+    width:64px;
+    height:64px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    color:white;
+
+    flex-shrink:0;
+}
+
+.support-content{
+    flex:1;
+}
+
+.support-content h2{
+    margin:0;
+    font-size:20px;
+    font-weight:700;
+}
+
+.support-content p{
+    margin-top:8px;
+    color:#e2e8f0;
+}
+
+.support-content small{
+    display:block;
+    margin-top:6px;
+    color:#94a3b8;
+}
+
+.support-card svg:last-child{
+    color:#60a5fa;
+}
+
+.support-footer{
+    margin-top:40px;
+
+    text-align:center;
+
+    background:rgba(17,24,39,.75);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:24px;
+}
+
+.support-footer h3{
+    color:white;
+    margin-bottom:8px;
+}
+
+.support-footer p{
+    color:#94a3b8;
+}
+
+@media(max-width:768px){
+
+.support-page{
+padding:18px;
+}
+
+.support-card{
+padding:18px;
+gap:15px;
+}
+
+.support-icon{
+width:56px;
+height:56px;
+}
+
+.support-content h2{
+font-size:18px;
+}
+
+}
