@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap');
+
+.activity-feed {
+  position: relative;
+  overflow: hidden;
+}
+
+.activity-feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.activity-feed-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.activity-feed-title-row h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #F5F7FA;
+  margin: 0;
+}
+
+.activity-feed-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #34D399;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.activity-feed-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34D399;
+  animation: activity-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes activity-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(52, 211, 153, 0); }
+}
+
+.activity-feed-viewall {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: transparent;
+  border: none;
+  color: #8FC3FF;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 4px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.activity-feed-viewall:hover {
+  color: #4F7CFF;
+  transform: translateX(2px);
+}
+
+.activity-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.activity-feed-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  opacity: 0;
+  animation: activity-row-in 0.35s ease forwards;
+}
+
+@keyframes activity-row-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.activity-feed-row:hover {
+  transform: translateX(3px);
+  border-color: rgba(79, 124, 255, 0.3);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.activity-feed-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #0B0F17;
+}
+
+.activity-feed-icon.sent { background: linear-gradient(135deg, #F87171, #FCA5A5); }
+.activity-feed-icon.received { background: linear-gradient(135deg, #34D399, #6EE7B7); }
+.activity-feed-icon.swap { background: linear-gradient(135deg, #4F7CFF, #22D3C9); }
+.activity-feed-icon.bridge { background: linear-gradient(135deg, #7c3aed, #4F7CFF); }
+.activity-feed-icon.request { background: linear-gradient(135deg, #E8B45E, #F5B93F); }
+
+.activity-feed-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-feed-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.activity-feed-type {
+  font-size: 14px;
+  font-weight: 600;
+  color: #F5F7FA;
+}
+
+.activity-feed-amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #F5F7FA;
+  white-space: nowrap;
+}
+
+.activity-feed-sub {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.activity-feed-detail {
+  font-size: 11.5px;
+  color: #8A93A8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity-feed-time {
+  font-size: 11px;
+  color: #6B7385;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.activity-feed-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.activity-feed-empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(79, 124, 255, 0.1);
+  color: #4F7CFF;
+  margin-bottom: 16px;
+}
+
+.activity-feed-empty h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #F5F7FA;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.activity-feed-empty p {
+  color: #8A93A8;
+  font-size: 13px;
+  max-width: 280px;
+}

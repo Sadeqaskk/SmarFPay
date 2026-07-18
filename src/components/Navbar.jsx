@@ -36,7 +36,7 @@ export default function Navbar({
         />
 
         <div className="brand">
-          <h1>SmarFArcPay</h1>
+          <h1>SmarFPay</h1>
           <p>Powered by ARC</p>
         </div>
       </div>

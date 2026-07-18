@@ -14,22 +14,49 @@ export default function WalletModal({ open, onClose }) {
   const { login } = useLogin({
 
     onComplete: ({ user, loginMethod }) => {
-    console.log("Logged in!", user);
-    console.log("Login method:", loginMethod);
+  console.log("Logged in!", user);
+  console.dir(user);
+  
+  console.log("Login method:", loginMethod);
 
-    onClose(); // Close Wallet Modal
-  },
+  console.log("User:", user);
+  console.log("Linked accounts:", user?.linkedAccounts);
+  console.log("Wallet:", user?.wallet);
+  console.log("Embedded wallets:", user?.linkedAccounts?.filter(
+    account => account.type === "wallet"
+  ));
+
+  onClose();
+},
 
   onError: (error) => {
     console.error(error);
   },
 });
-  
+
 const {
   authenticated,
   user,
   logout,
 } = usePrivy();
+
+
+
+useEffect(() => {
+  if (!authenticated || !user) return;
+
+  console.log("========== PRIVY USER ==========");
+  console.dir(user);
+
+  console.log("Wallet:", user.wallet);
+  console.log("Linked Accounts:", user.linkedAccounts);
+
+  user.linkedAccounts?.forEach((account, index) => {
+    console.log(`Account ${index}:`, account);
+  });
+}, [authenticated, user]);
+
+
 
 console.log("Connectors:", connectors);
 

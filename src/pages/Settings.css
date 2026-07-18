@@ -1,172 +1,515 @@
 .settings-page{
-    max-width:900px;
-    margin:0 auto;
-    padding:32px;
+    position:relative;
+    padding:35px;
+    min-height:100vh;
+    overflow:hidden;
 }
 
-.settings-header{
+.settings-hero{
     text-align:center;
-    margin-bottom:32px;
+    margin-bottom:35px;
+    position:relative;
+    z-index:2;
 }
 
-.settings-header svg{
-    color:#2563eb;
-    margin-bottom:14px;
-}
-
-.settings-header h1{
-    color:#fff;
-    font-size:34px;
-    font-weight:700;
-    margin-bottom:10px;
-}
-
-.settings-header p{
-    color:#94a3b8;
-    font-size:15px;
-}
-
-.settings-card{
-
-    margin-bottom:24px;
-
-    background:rgba(17,24,39,.72);
-
-    backdrop-filter:blur(18px);
-
+.settings-logo{
+    width:90px;
+    height:90px;
+    margin:auto;
+    margin-bottom:18px;
+    border-radius:24px;
+    overflow:hidden;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+    0 0 35px rgba(0,140,255,.35);
+}
+
+.settings-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.settings-hero h1{
+    font-size:42px;
+    font-weight:800;
+    color:white;
+    margin-bottom:8px;
+}
+
+.settings-hero p{
+    color:#9ea7bc;
+    font-size:16px;
+}
+
+.settings-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:20px;
+    padding:10px 18px;
+    border-radius:40px;
+    background:rgba(0,120,255,.12);
+    border:1px solid rgba(0,120,255,.35);
+    color:#4db4ff;
+    font-weight:600;
+}
+
+.verified-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#00ff8c;
+    box-shadow:0 0 12px #00ff8c;
+}
+
+/* ==========================
+   Settings Grid
+========================== */
+
+.settings-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+    margin-top:30px;
+    margin-bottom:35px;
+
+}
+
+.setting-card{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:22px;
 
     border-radius:22px;
 
-    overflow:hidden;
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.08);
 
     transition:.35s;
-}
-
-.settings-card:hover{
-
-    border-color:#2563eb;
 
     box-shadow:
-    0 15px 40px rgba(37,99,235,.18);
+    0 15px 40px rgba(0,0,0,.25);
 
 }
 
-.settings-card h2{
+.setting-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#2b82ff;
+
+    box-shadow:
+    0 0 35px rgba(43,130,255,.35);
+
+}
+
+.setting-icon{
+
+    width:55px;
+    height:55px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#3aa8ff;
+
+    background:rgba(58,168,255,.12);
+
+    margin-right:16px;
+
+}
+
+.setting-card h3{
 
     color:white;
 
     font-size:18px;
 
-    padding:22px 22px 12px;
-
-    margin:0;
+    margin-bottom:6px;
 
 }
 
-.setting-row{
+.setting-card p{
 
-    width:100%;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:none;
-
-    border:none;
-
-    color:white;
-
-    cursor:pointer;
-
-    padding:18px 22px;
-
-    transition:.25s;
-
-    border-top:1px solid rgba(255,255,255,.05);
-
-}
-
-.setting-row:hover{
-
-    background:rgba(37,99,235,.08);
-
-}
-
-.setting-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-}
-
-.setting-left svg{
-
-    color:#60a5fa;
-
-}
-
-.setting-left span{
-
-    font-size:15px;
-
-    font-weight:500;
-
-}
-
-.setting-row svg:last-child{
-
-    color:#94a3b8;
-
-}
-
-.coming-label{
-
-    background:#2563eb;
-
-    color:white;
-
-    padding:5px 10px;
-
-    border-radius:999px;
-
-    font-size:12px;
-
-    font-weight:600;
-
-}
-
-.setting-row small{
-
-    color:#94a3b8;
+    color:#9aa5b5;
 
     font-size:14px;
 
 }
 
+.status-active{
+
+    color:#00ff8c;
+
+    font-weight:700;
+
+}
+
+.network-pill{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    background:rgba(0,153,255,.15);
+
+    color:#39b4ff;
+
+    font-weight:700;
+
+}
+
+.theme-pill{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+}
+
+/* Toggle */
+
+.switch{
+
+    position:relative;
+
+    width:52px;
+
+    height:28px;
+
+}
+
+.switch input{
+
+    display:none;
+
+}
+
+.slider{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#444;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+}
+
+.slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:white;
+
+    left:3px;
+
+    top:3px;
+
+    transition:.3s;
+
+}
+
+.switch input:checked + .slider{
+
+    background:#2b82ff;
+
+}
+
+.switch input:checked + .slider::before{
+
+    transform:translateX(24px);
+
+}
+
+/* ==========================
+   Account Information
+========================== */
+
+.account-section{
+
+    margin-top:40px;
+    margin-bottom:40px;
+
+}
+
+.section-title{
+
+    color:white;
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:20px;
+
+}
+
+.account-card{
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,.25);
+
+}
+
+.account-row{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 28px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.account-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.account-row span{
+
+    color:#9ca6bb;
+
+    font-size:15px;
+
+}
+
+.account-row strong{
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+.wallet-status{
+
+    color:#00ff8c !important;
+
+    font-weight:700;
+
+}
+
+.account-row:hover{
+
+    background:rgba(255,255,255,.03);
+
+    transition:.3s;
+
+}
+
+/* ==========================
+   Action Buttons
+========================== */
+
+.settings-actions{
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+    margin-top:40px;
+
+}
+
+.settings-action-btn{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 24px;
+
+    border:none;
+
+    border-radius:22px;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    transition:.35s;
+
+    color:white;
+
+}
+
+.settings-action-btn:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#2b82ff;
+
+    box-shadow:
+    0 0 35px rgba(43,130,255,.35);
+
+}
+
+.settings-action-btn h3{
+
+    margin-bottom:5px;
+
+    font-size:18px;
+
+}
+
+.settings-action-btn span{
+
+    color:#9ca6bb;
+
+    font-size:14px;
+
+}
+
+.logout-btn{
+
+    border-color:rgba(255,80,80,.2);
+
+}
+
+.logout-btn:hover{
+
+    border-color:#ff5252;
+
+    box-shadow:
+    0 0 30px rgba(255,82,82,.35);
+
+}
+
+/* ==========================
+   App Version
+========================== */
+
+.app-info-card{
+
+    margin-top:45px;
+
+    text-align:center;
+
+    padding:30px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+}
+
+.app-info-card h3{
+
+    color:white;
+
+    font-size:26px;
+
+    margin-bottom:12px;
+
+}
+
+.app-info-card p{
+
+    color:#9ea7bc;
+
+    margin-bottom:12px;
+
+}
+
+.app-info-card strong{
+
+    color:#3aa8ff;
+
+}
+
+.app-info-card span{
+
+    color:#7d8798;
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
 @media(max-width:768px){
 
 .settings-page{
 
-padding:18px;
+padding:20px;
 
 }
 
-.settings-card h2{
+.settings-grid{
 
-padding:18px 18px 10px;
+grid-template-columns:1fr;
 
 }
 
-.setting-row{
+.account-row{
 
-padding:16px 18px;
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+.settings-action-btn{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:12px;
 
 }
 

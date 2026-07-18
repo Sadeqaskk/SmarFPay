@@ -26,7 +26,7 @@ export default function Sidebar({
           />
 
           <div>
-            <h2>SmarFArcPay</h2>
+            <h2>SmarFPay</h2>
             <p>ARC Testnet</p>
           </div>
 
@@ -61,6 +61,15 @@ export default function Sidebar({
             Transactions
           </button>
 
+<button
+  onClick={() => {
+    setPage("request");
+    setMenuOpen(false);
+  }}
+>
+  Request Money
+</button>
+
           <button
             onClick={() => {
               setPage("profile");
@@ -88,12 +97,22 @@ export default function Sidebar({
             Support
           </button>
 
+
+<button
+  className="coming-soon-btn"
+  disabled
+>
+  AI Agent
+  <span className="coming-soon-badge">Coming Soon</span>
+</button>
+
+
         </nav>
 
         <div className="sidebar-footer">
 
           <a
-            href="https://x.com/YourProjectHandle"
+            href="https://x.com/smarfarcpay"
             target="_blank"
             rel="noreferrer"
           >
@@ -101,7 +120,7 @@ export default function Sidebar({
           </a>
 
           <a
-            href="https://x.com/YourBuilderHandle"
+            href="https://x.com/0xsadik0"
             target="_blank"
             rel="noreferrer"
           >

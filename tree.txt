@@ -1,0 +1,26 @@
+smarf-arc-pay@0.0.0 C:\Users\lenovo\stablecoin-app\smarf-arc-pay
++-- UNMET DEPENDENCY @circle-fin/adapter-viem-v2@^1.13.0
++-- UNMET DEPENDENCY @circle-fin/app-kit@^1.9.0
++-- UNMET DEPENDENCY @circle-fin/bridge-kit@^1.12.0
++-- UNMET DEPENDENCY @eslint/js@^9.0.0
++-- UNMET DEPENDENCY @privy-io/react-auth@^3.32.2
++-- UNMET DEPENDENCY @privy-io/wagmi@^4.0.14
++-- UNMET DEPENDENCY @tanstack/react-query@^5.101.2
++-- UNMET DEPENDENCY @types/react-dom@^18.2.0
++-- UNMET DEPENDENCY @types/react@^18.2.0
++-- UNMET DEPENDENCY @vitejs/plugin-react@^4.3.0
++-- UNMET DEPENDENCY @wagmi/core@^2.22.1
++-- UNMET DEPENDENCY eslint-plugin-react-hooks@^4.6.0
++-- UNMET DEPENDENCY eslint-plugin-react-refresh@^0.4.0
++-- UNMET DEPENDENCY eslint@^8.57.0
++-- UNMET DEPENDENCY globals@^15.0.0
++-- UNMET DEPENDENCY lucide-react@^1.23.0
++-- UNMET DEPENDENCY react-countup@^6.5.3
++-- UNMET DEPENDENCY react-dom@^18.3.1
++-- UNMET DEPENDENCY react-qr-code@^2.2.0
++-- UNMET DEPENDENCY react@^18.3.1
++-- UNMET DEPENDENCY recharts@^3.9.2
++-- UNMET DEPENDENCY viem@^2.52.0
++-- UNMET DEPENDENCY vite@^5.4.0
+`-- UNMET DEPENDENCY wagmi@^2.19.5
+
