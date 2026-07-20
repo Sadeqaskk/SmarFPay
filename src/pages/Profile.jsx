@@ -73,7 +73,7 @@ export default function Profile() {
             className="identity-avatar"
             src={
               user?.google?.picture ||
-              "https://ui-avatars.com/api/?name=SmarFArcPay"
+              "https://ui-avatars.com/api/?name=SmarFPay"
             }
             alt=""
           />
@@ -82,7 +82,7 @@ export default function Profile() {
 
             <h2>
               {user?.google?.name ||
-                "SmarFArcPay User"}
+                "SmarFPay User"}
             </h2>
 
             <p>
@@ -210,9 +210,9 @@ export default function Profile() {
 
           <h3>Assets</h3>
 
-          <h2>1</h2>
+          <h2>3</h2>
 
-          <span>USDC</span>
+          <span>Digital Assets</span>
 
         </div>
 

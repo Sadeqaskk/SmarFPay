@@ -39,7 +39,7 @@ export default function Settings() {
 
         <p>
 
-          Customize your SmarFArcPay experience
+          Customize your SmarFPay experience
 
         </p>
 
@@ -324,7 +324,7 @@ export default function Settings() {
 
       <div className="app-info-card">
 
-        <h3>SmarFArcPay</h3>
+        <h3>SmarFPay</h3>
 
         <p>
 

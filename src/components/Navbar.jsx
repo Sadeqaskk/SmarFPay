@@ -1,15 +1,12 @@
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import arcLogo from "../assets/arc-logo.jpg";
+import SmarfLogo from "../assets/icons/smarf-logo.png";
 
 export default function Navbar({
   menuOpen,
   setMenuOpen,
   setWalletModalOpen,
 }) {
-  
-  
   const { address, isConnected } = useAccount();
-
   const { disconnect } = useDisconnect();
 
   const shortAddress = address
@@ -29,15 +26,11 @@ export default function Navbar({
           <span></span>
         </button>
 
-        <img
-          src={arcLogo}
-          alt="ARC Logo"
-          className="arc-logo"
-        />
+        <img src={SmarfLogo} alt="Smarf Logo" className="smarf-logo" />
 
         <div className="brand">
           <h1>SmarFPay</h1>
-          <p>Powered by ARC</p>
+          <p>Stablecoin Infrastructure</p>
         </div>
       </div>
 
@@ -50,26 +43,25 @@ export default function Navbar({
 
         {!isConnected ? (
           <button
-  className="wallet-btn"
-  onClick={() => setWalletModalOpen(true)}
->
-  Connect Wallet
-</button>
+            className="wallet-btn"
+            onClick={() => setWalletModalOpen(true)}
+          >
+            Connect Wallet
+          </button>
         ) : (
           <div className="wallet-connected">
             <div className="wallet-address">
               {shortAddress}
             </div>
-
             <button
-  className="disconnect-btn"
-  onClick={() => {
-    console.log("Disconnect clicked");
-    disconnect();
-  }}
->
-  Disconnect
-</button>
+              className="disconnect-btn"
+              onClick={() => {
+                console.log("Disconnect clicked");
+                disconnect();
+              }}
+            >
+              Disconnect
+            </button>
           </div>
         )}
       </div>

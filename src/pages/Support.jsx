@@ -68,7 +68,7 @@ export default function Support() {
 
   <div className="footer-version">
 
-    Version 0.1.0 Alpha
+    Version 1.9 Alpha
 
   </div>
 
@@ -139,7 +139,7 @@ export default function Support() {
             </p>
 
             <span className="builder-badge">
-              Powered by ARC Testnet
+              Our app is built on Arc.
             </span>
 
           </div>
@@ -149,7 +149,7 @@ export default function Support() {
         <div className="project-actions">
 
           <a
-            href="https://x.com/smarfarcpay"
+            href="https://x.com/smarfpay"
             target="_blank"
             rel="noopener noreferrer"
             className="follow-btn"
@@ -191,6 +191,9 @@ export default function Support() {
         <div
   className="action-card bug"
   onMouseMove={handleMouseMove}
+onClick={() =>
+    window.open("https://x.com/smarfPay", "_blank")
+  }
 >
   <div className="actionIcon">
     <Bug size={34} />
@@ -199,13 +202,16 @@ export default function Support() {
   <h3>Report Bug</h3>
 
   <p>
-    Report bugs directly to the SmarFArcPay team.
+    Report bugs directly to the SmarFPay team.
   </p>
 </div>
 
         <div
           className="action-card feature"
           onMouseMove={handleMouseMove}
+        onClick={() =>
+    window.open("https://t.me/smarfarcpay", "_blank")
+  }
         >
 
           <div className="actionIcon">
@@ -215,7 +221,7 @@ export default function Support() {
           <h3>Feature Request</h3>
 
           <p>
-            Suggest new features and improvements for SmarFArcPay.
+            Suggest new features and improvements for SmarFPay.
           </p>
 
         </div>
@@ -223,6 +229,9 @@ export default function Support() {
         <div
           className="action-card community"
           onMouseMove={handleMouseMove}
+        onClick={() =>
+    window.open("https://discord.gg/MfwWfvx6v", "_blank")
+  }
         >
 
           <div className="actionIcon">

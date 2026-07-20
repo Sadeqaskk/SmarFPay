@@ -20,6 +20,8 @@ import RequestMoney from "./pages/RequestMoney";
 import Bridge from "./pages/Bridge";
 import ActivityFeed from "./components/ActivityFeed";
 import { ARC_TOKENS } from "./lib/chains";
+import { Routes, Route } from "react-router-dom";
+import Pay from "./pages/Pay";
 
 
 import Navbar from "./components/Navbar";
@@ -97,6 +99,7 @@ useWatchContractEvent({
   address: USDC_ADDRESS,
   abi: ERC20_ABI,
   eventName: "Transfer",
+  pollingInterval: 15000,
   onLogs(logs) {
     logs.forEach((log) => {
       const { from, to, value } = log.args;
@@ -134,7 +137,7 @@ const {
 
   query: { 
 
-    refetchInterval: 5000, 
+    refetchInterval: 20000, 
 
   }, 
 
@@ -149,7 +152,7 @@ const {
   address: walletAddress,
   token: ARC_TOKENS.EURC.address,
   query: {
-    refetchInterval: 5000,
+    refetchInterval: 20000,
     enabled: !!walletAddress,
   },
 });
@@ -163,7 +166,7 @@ const {
   address: walletAddress,
   token: ARC_TOKENS.cirBTC.address,
   query: {
-    refetchInterval: 5000,
+    refetchInterval: 20000,
     enabled: !!walletAddress,
   },
 });
@@ -183,14 +186,6 @@ useEffect(() => {
     setLastUpdated(new Date().toLocaleTimeString());
   }
 }, [balance]);
-
-if (!ready) {
-  return null;
-}
-
-if (!authenticated) {
-  return <Login />;
-}
 
 const shortAddress = walletAddress
   ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
@@ -272,32 +267,42 @@ case "portfolio":
     }
   };
 
+  if (!ready) {
+    return null;
+  }
+
   return (
-    <div className="app">
-
-      <Navbar
-  menuOpen={menuOpen}
-  setMenuOpen={setMenuOpen}
-  setWalletModalOpen={setWalletModalOpen}
-/>
-      <Sidebar
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        setPage={setPage}
+    <Routes>
+      <Route path="/pay" element={<Pay />} />
+      <Route
+        path="*"
+        element={
+          !authenticated ? (
+            <Login />
+          ) : (
+            <div className="app">
+              <Navbar
+                menuOpen={menuOpen}
+                setMenuOpen={setMenuOpen}
+                setWalletModalOpen={setWalletModalOpen}
+              />
+              <Sidebar
+                menuOpen={menuOpen}
+                setMenuOpen={setMenuOpen}
+                setPage={setPage}
+              />
+              <main className="main-content">
+                {renderPage()}
+              </main>
+              <WalletModal
+                open={walletModalOpen}
+                onClose={() => setWalletModalOpen(false)}
+              />
+              <TransactionModal tx={selectedTx} onClose={() => setSelectedTx(null)} />
+            </div>
+          )
+        }
       />
-
-      <main className="main-content">
-        {renderPage()}
-      </main>
-
-<WalletModal
-  open={walletModalOpen}
-  onClose={() => setWalletModalOpen(false)}
-/>
-
-
-<TransactionModal tx={selectedTx} onClose={() => setSelectedTx(null)} />
-
-    </div>
+    </Routes>
   );
 }

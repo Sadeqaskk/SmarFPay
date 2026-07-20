@@ -1943,3 +1943,356 @@ transition-duration:.001ms !important;
 }
 
 }
+
+/* ==========================================================
+   RESPONSIVE
+   Dashboard.css previously had no media queries at all, so every
+   layout (hero row, 4-col stats, 5-col quick actions, 3-col assets,
+   420px coin platform, 78px balance text) was fixed regardless of
+   screen size — that's why it only looked right at desktop width.
+   Breakpoints match the rest of the app: 1200 laptop / 992 tablet /
+   768 mobile / 480 small mobile.
+========================================================== */
+
+/* ---------- LAPTOP (<=1200px) ---------- */
+@media (max-width: 1200px) {
+
+  .dashboard-page {
+    padding: 32px;
+  }
+
+  .dashboard-hero {
+    padding: 48px;
+    gap: 40px;
+  }
+
+  .hero-title {
+    font-size: 46px;
+  }
+
+  .hero-balance h2 {
+    font-size: 60px;
+  }
+
+  .coin-platform {
+    width: 320px;
+    height: 320px;
+  }
+
+  .hero-coin {
+    width: 140px;
+    height: 140px;
+  }
+
+  .ring-1 { width: 170px; height: 170px; }
+  .ring-2 { width: 220px; height: 220px; }
+  .ring-3 { width: 270px; height: 270px; }
+
+  .quick-actions {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .asset-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- TABLET (<=992px) ---------- */
+@media (max-width: 992px) {
+
+  .dashboard-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    padding: 40px;
+    text-align: left;
+  }
+
+  .hero-left {
+    max-width: 100%;
+  }
+
+  .hero-right {
+    width: 100%;
+    order: -1;
+  }
+
+  .coin-platform {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+
+  .hero-coin {
+    width: 100px;
+    height: 100px;
+  }
+
+  .ring-1 { width: 120px; height: 120px; }
+  .ring-2 { width: 160px; height: 160px; }
+  .ring-3 { width: 200px; height: 200px; }
+
+  .hero-buttons {
+    flex-wrap: wrap;
+  }
+
+  .premium-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .asset-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .wallet-glass-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  .wallet-right {
+    width: 100%;
+  }
+
+  .wallet-copy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------- MOBILE (<=768px) ---------- */
+@media (max-width: 768px) {
+
+  .dashboard-page {
+    padding: 18px;
+  }
+
+  .dashboard-hero {
+    padding: 28px;
+    border-radius: 26px;
+    gap: 28px;
+  }
+
+  .hero-chip {
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+    margin-top: 18px;
+  }
+
+  .hero-balance h2 {
+    font-size: 42px;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .hero-balance small {
+    font-size: 18px;
+    margin-left: 8px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+
+  .hero-buttons {
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .hero-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  /* the floating decorative coin rings are purely cosmetic and
+     compete for space with real content on small screens */
+  .coin-platform {
+    width: 150px;
+    height: 150px;
+  }
+
+  .hero-coin {
+    width: 72px;
+    height: 72px;
+  }
+
+  .ring-1 { width: 90px; height: 90px; }
+  .ring-2 { width: 120px; height: 120px; }
+  .ring-3 { width: 150px; height: 150px; }
+
+  .floating-token {
+    width: 36px;
+    height: 36px;
+  }
+
+  .premium-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .premium-card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .premium-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
+
+  .premium-card h3 {
+    font-size: 17px;
+  }
+
+  .wallet-glass-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .wallet-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+  }
+
+  .wallet-left h2 {
+    font-size: 20px;
+  }
+
+  .wallet-left p {
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .quick-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .quick-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+
+  .quick-card h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .quick-card p {
+    font-size: 13px;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+  }
+
+  .asset-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .asset-card {
+    padding: 24px;
+  }
+
+  .asset-card img {
+    width: 52px;
+    margin-bottom: 16px;
+  }
+
+  .asset-card h1 {
+    font-size: 32px;
+  }
+
+  .portfolio-chart {
+    height: 140px;
+    padding: 6px;
+  }
+
+  .activity-row {
+    padding: 18px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .activity-right {
+    align-items: flex-start;
+  }
+
+  .activity-empty {
+    padding: 48px 20px;
+  }
+}
+
+/* ---------- SMALL MOBILE (<=480px) ---------- */
+@media (max-width: 480px) {
+
+  .dashboard-hero {
+    padding: 20px;
+  }
+
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .hero-balance h2 {
+    font-size: 34px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .coin-platform {
+    width: 110px;
+    height: 110px;
+  }
+
+  .hero-coin {
+    width: 54px;
+    height: 54px;
+  }
+
+  .ring-1 { width: 68px; height: 68px; }
+  .ring-2 { width: 90px; height: 90px; }
+  .ring-3 { width: 110px; height: 110px; }
+
+  .premium-stats,
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .asset-card h1 {
+    font-size: 28px;
+  }
+}

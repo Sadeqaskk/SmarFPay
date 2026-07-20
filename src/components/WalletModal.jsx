@@ -145,7 +145,7 @@ console.log("window.ethereum:", window.ethereum);
     <h3>
       {user?.google?.name ||
         user?.email?.address ||
-        "SmarFArcPay User"}
+        "SmarFPay User"}
     </h3>
 
     <p>{user?.email?.address}</p>

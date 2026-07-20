@@ -53,7 +53,7 @@ export default function RequestMoney() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "SmarFArcPay Request",
+          title: "SmarPay Request",
           text: `Payment request for ${amount || "0.00"} ${token.symbol}`,
           url: requestLink,
         });
@@ -91,7 +91,7 @@ export default function RequestMoney() {
         <div className="request-hero-glow"></div>
 
         <div className="request-logo">
-  <img src={requestProfile} alt="SmarFArcPay" />
+  <img src={requestProfile} alt="SmarFPay" />
 </div>
 
         <div className="request-live">
