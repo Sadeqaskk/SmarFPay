@@ -1,232 +1,216 @@
 import "./WalletModal.css";
-import { useEffect } from "react";
-import { useConnect } from "wagmi";
+import { useState } from "react";
+import { EthereumProvider } from "@walletconnect/ethereum-provider";
 import {
   useLogin,
   usePrivy,
 } from "@privy-io/react-auth";
-
+import { Mail, ExternalLink, LogOut, X, ShieldCheck } from "lucide-react";
+import { arcTestnet } from "../wagmi";
 
 export default function WalletModal({ open, onClose }) {
- 
-  const { connect, connectors } = useConnect();
+
+  const [connectingWallet, setConnectingWallet] = useState(false);
+  const [connectError, setConnectError] = useState("");
 
   const { login } = useLogin({
-
-    onComplete: ({ user, loginMethod }) => {
-  console.log("Logged in!", user);
-  console.dir(user);
-  
-  console.log("Login method:", loginMethod);
-
-  console.log("User:", user);
-  console.log("Linked accounts:", user?.linkedAccounts);
-  console.log("Wallet:", user?.wallet);
-  console.log("Embedded wallets:", user?.linkedAccounts?.filter(
-    account => account.type === "wallet"
-  ));
-
-  onClose();
-},
-
-  onError: (error) => {
-    console.error(error);
-  },
-});
-
-const {
-  authenticated,
-  user,
-  logout,
-} = usePrivy();
-
-
-
-useEffect(() => {
-  if (!authenticated || !user) return;
-
-  console.log("========== PRIVY USER ==========");
-  console.dir(user);
-
-  console.log("Wallet:", user.wallet);
-  console.log("Linked Accounts:", user.linkedAccounts);
-
-  user.linkedAccounts?.forEach((account, index) => {
-    console.log(`Account ${index}:`, account);
+    onComplete: () => {
+      setConnectingWallet(false);
+      onClose();
+    },
+    onError: (error) => {
+      console.error(error);
+      setConnectingWallet(false);
+      setConnectError("Sign-in failed. Please try again.");
+    },
   });
-}, [authenticated, user]);
 
-
-
-console.log("Connectors:", connectors);
-
-console.log("window.ethereum:", window.ethereum);
-
-  useEffect(() => {
-    console.log("window.ethereum:", window.ethereum);
-    console.log("isMetaMask:", window.ethereum?.isMetaMask);
-    console.log("isRabby:", window.ethereum?.isRabby);
-    console.log("Connectors:", connectors);
-  }, [connectors]);
+  const {
+    authenticated,
+    user,
+    logout,
+  } = usePrivy();
 
   if (!open) return null;
 
+  function handleWalletConnect() {
+    setConnectError("");
+    setConnectingWallet(true);
+    login({ loginMethods: ["wallet"] });
+  }
 
- 
+  async function handleWalletConnectQR() {
+    setConnectError("");
+    setConnectingWallet(true);
+
+    try {
+      const provider = await EthereumProvider.init({
+        projectId: "ce05547a42469cc7b3e0fe02f8f0015f",
+        chains: [arcTestnet.id],
+        showQrModal: true,
+        metadata: {
+          name: "SmarFPay",
+          description: "Access your SmarFPay vault",
+          url: window.location.origin,
+          icons: [],
+        },
+      });
+
+      await provider.enable();
+
+      setConnectingWallet(false);
+      onClose();
+    } catch (error) {
+      console.error("WalletConnect error:", error);
+      setConnectingWallet(false);
+      setConnectError(error?.message || "Couldn't connect via WalletConnect.");
+    }
+  }
+
   return (
     <>
-      <div className="wallet-overlay" onClick={onClose}></div>
+      <div className="wm-overlay" onClick={onClose}></div>
 
-      <div className="wallet-modal">
+      <div className="wm-modal" role="dialog" aria-modal="true">
 
-        <div className="wallet-modal-header">
+        <div className="wm-aura wm-aura-a" aria-hidden="true"></div>
+        <div className="wm-aura wm-aura-b" aria-hidden="true"></div>
+        <div className="wm-grain" aria-hidden="true"></div>
 
-          <h2>Connect Wallet</h2>
+        <div className="wm-drag-handle" aria-hidden="true"></div>
+
+        <div className="wm-header">
+          <div className="wm-crest">
+            <svg viewBox="0 0 40 40" className="wm-crest-ring" aria-hidden="true">
+              <circle cx="20" cy="20" r="18" />
+            </svg>
+            <ShieldCheck size={18} strokeWidth={2} className="wm-crest-icon" />
+          </div>
+
+          <div className="wm-heading-text">
+            <h2>Connect</h2>
+            <p>Access your SmarFPay vault</p>
+          </div>
+
+          <button className="wm-close" onClick={onClose} aria-label="Close">
+            <X size={18} strokeWidth={2} />
+          </button>
+        </div>
+
+        {connectError && (
+          <div className="wm-error" role="alert">
+            {connectError}
+          </div>
+        )}
+
+        {!authenticated ? (
+          <div className="wm-login-section">
+
+            <button
+              className="wm-login-row wm-login-email"
+              onClick={() => login({ loginMethods: ["email"] })}
+            >
+              <span className="wm-row-icon">
+                <Mail size={19} strokeWidth={2} />
+              </span>
+              <span className="wm-row-text">
+                <strong>Continue with Email</strong>
+                <small>Creates your Smart Wallet instantly</small>
+              </span>
+              <span className="wm-row-shine" aria-hidden="true"></span>
+            </button>
+
+            <button
+              className="wm-login-row wm-login-google"
+              onClick={() => login({ loginMethods: ["google"] })}
+            >
+              <span className="wm-row-icon wm-row-icon-google">G</span>
+              <span className="wm-row-text">
+                <strong>Continue with Google</strong>
+                <small>Fast, secure single sign-on</small>
+              </span>
+              <span className="wm-row-shine" aria-hidden="true"></span>
+            </button>
+
+          </div>
+        ) : (
+          <div className="wm-profile">
+            <div className="wm-profile-glow" aria-hidden="true"></div>
+
+            <img
+              src={user?.google?.picture || "https://ui-avatars.com/api/?name=User&background=0B1428&color=fff"}
+              alt=""
+              className="wm-profile-avatar"
+            />
+
+            <h3>{user?.google?.name || user?.email?.address || "SmarFPay User"}</h3>
+            {user?.email?.address && <p>{user.email.address}</p>}
+
+            <span className="wm-connected-pill">
+              <span className="wm-pulse-dot"></span>
+              Connected
+            </span>
+
+            <button className="wm-logout-btn" onClick={logout}>
+              <LogOut size={15} strokeWidth={2} />
+              Sign out
+            </button>
+          </div>
+        )}
+
+        <div className="wm-divider">
+          <span>or connect a wallet</span>
+        </div>
+
+        <div className="wm-wallet-list">
 
           <button
-            className="wallet-close"
-            onClick={onClose}
+            className="wm-wallet-row"
+            onClick={handleWalletConnect}
+            disabled={connectingWallet}
           >
-            ✕
+            <span className="wm-wallet-badge wm-badge-fox">🦊</span>
+            <span className="wm-row-text">
+              <strong>Browser Wallet</strong>
+              <small>MetaMask, Rabby & more</small>
+            </span>
+            <span className="wm-row-arrow">→</span>
+            <span className="wm-row-shine" aria-hidden="true"></span>
+          </button>
+
+          <button
+            className="wm-wallet-row"
+            onClick={handleWalletConnect}
+            disabled={connectingWallet}
+          >
+            <span className="wm-wallet-badge wm-badge-coinbase">◎</span>
+            <span className="wm-row-text">
+              <strong>Coinbase Wallet</strong>
+              <small>Mobile & desktop</small>
+            </span>
+            <span className="wm-row-arrow">→</span>
+            <span className="wm-row-shine" aria-hidden="true"></span>
+          </button>
+
+          <button
+            className="wm-wallet-row"
+            onClick={handleWalletConnectQR}
+            disabled={connectingWallet}
+          >
+            <span className="wm-wallet-badge wm-badge-wc">◈</span>
+            <span className="wm-row-text">
+              <strong>WalletConnect</strong>
+              <small>Scan a QR code</small>
+            </span>
+            <span className="wm-row-arrow">→</span>
+            <span className="wm-row-shine" aria-hidden="true"></span>
           </button>
 
         </div>
 
-        <p className="wallet-subtitle">
-         Sign in with Email, Google, or connect your existing wallet.
-        </p>
-
-{!authenticated ? (
-
-  <div className="login-section">
-
-    <button
-      className="login-button email-login"
-      onClick={() =>
-        login({
-          loginMethods: ["email"],
-        })
-      }
-    >
-      📧
-      <div>
-        <h3>Continue with Email</h3>
-        <p>Create your Smart Wallet</p>
-      </div>
-    </button>
-
-    <button
-      className="login-button google-login"
-      onClick={() =>
-        login({
-          loginMethods: ["google"],
-        })
-      }
-    >
-      🔵
-      <div>
-        <h3>Continue with Google</h3>
-        <p>Fast & Secure Sign In</p>
-      </div>
-    </button>
-
-  </div>
-
-) : (
-
-  <div className="profile-preview">
-
-    <img
-      src={user?.google?.picture || "https://ui-avatars.com/api/?name=User"}
-      alt="Profile"
-      className="profile-avatar"
-    />
-
-    <h3>
-      {user?.google?.name ||
-        user?.email?.address ||
-        "SmarFPay User"}
-    </h3>
-
-    <p>{user?.email?.address}</p>
-
-    <span className="connected-badge">
-      🟢 Connected
-    </span>
-
-    <button
-      className="logout-btn"
-      onClick={logout}
-    >
-      Logout
-    </button>
-
-  </div>
-
-)}
-
-<div className="wallet-divider">
-  <span>OR CONNECT EXISTING WALLET</span>
-</div>
-
-       <div className="wallet-list">
-
-  <button
-    className="wallet-option"
-    onClick={() => {
-      console.log("Clicked");
-      console.log(connectors);
-
-      if (!connectors.length) {
-        console.log("No connectors found");
-        return;
-      }
-
-      connect(
-        { connector: connectors[0] },
-        {
-          onSuccess() {
-            console.log("Connected!");
-            onClose();
-          },
-          onError(error) {
-            console.error("Connection error:", error);
-          },
-        }
-      );
-    }}
-  >
-    🦊
-    <div>
-      <h3>Rabby / Browser Wallet</h3>
-      <p>Injected Wallet</p>
-    </div>
-  </button>
-
-  <button className="wallet-option">
-    🔵
-    <div>
-      <h3>Coinbase Wallet</h3>
-      <p>Mobile & Desktop</p>
-    </div>
-  </button>
-
-          <button
-  className="wallet-option"
-  onClick={() => {
-  if (connectors[1]) {
-    connect({ connector: connectors[1] });
-    onClose();
-  }
-}}
->
-  📱
-  <div>
-    <h3>WalletConnect</h3>
-    <p>Scan QR Code</p>
-  </div>
-</button>
-
+        <div className="wm-footer-note">
+          <ExternalLink size={13} strokeWidth={2} />
+          <span>Non-custodial. Your keys never touch our servers.</span>
         </div>
 
       </div>

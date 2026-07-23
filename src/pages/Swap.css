@@ -1,13 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .swap-shell {
-  min-height: 80vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 16px;
+  padding: clamp(16px, 5vw, 40px) clamp(12px, 4vw, 16px);
   font-family: 'Inter', sans-serif;
   position: relative;
+  width: 100%;
 }
 
 .swap-shell::before {
@@ -48,21 +55,24 @@
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  padding: 22px;
+  padding: clamp(16px, 4vw, 22px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  width: 100%;
 }
 
 .swap-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   margin-bottom: 18px;
+  flex-wrap: wrap;
 }
 
 .swap-title {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: clamp(17px, 4.5vw, 20px);
   color: #F5F7FA;
   margin: 0;
 }
@@ -79,6 +89,7 @@
   letter-spacing: 0.02em;
   padding: 5px 10px;
   border-radius: 20px;
+  white-space: nowrap;
 }
 
 .pulse-dot {
@@ -87,6 +98,7 @@
   border-radius: 50%;
   background: #22D3C9;
   animation: pulse-dot 1.6s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 @keyframes pulse-dot {
@@ -98,8 +110,9 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 18px;
-  padding: 14px 16px;
+  padding: clamp(10px, 3vw, 14px) clamp(12px, 3.5vw, 16px);
   transition: border-color 0.2s ease;
+  width: 100%;
 }
 
 .token-panel:focus-within {
@@ -120,39 +133,25 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  min-width: 0;
 }
 
 .amount-input {
   flex: 1;
   min-width: 0;
+  width: 0;
   background: transparent;
   border: none;
   outline: none;
   color: #F5F7FA;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
-  font-size: 28px;
+  font-size: clamp(20px, 6vw, 28px);
 }
 
 .amount-input::placeholder {
   color: #3D4457;
-}
-
-.token-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 30px;
-  padding: 6px 12px 6px 6px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  flex-shrink: 0;
-}
-
-.token-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .token-avatar {
@@ -166,23 +165,6 @@
   font-weight: 700;
   color: #0B0F17;
   flex-shrink: 0;
-}
-
-.token-pill select {
-  appearance: none;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #F5F7FA;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.token-pill select option {
-  background: #131826;
-  color: #F5F7FA;
 }
 
 .flip-row {
@@ -205,6 +187,7 @@
   justify-content: center;
   cursor: pointer;
   transition: transform 0.35s ease, color 0.2s ease;
+  flex-shrink: 0;
 }
 
 .flip-btn:hover {
@@ -219,9 +202,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  gap: 8px;
+  font-size: clamp(11px, 3vw, 12px);
   color: #8A93A8;
   padding: 12px 4px 4px;
+  flex-wrap: wrap;
 }
 
 .loading-dots::after {
@@ -240,14 +225,14 @@
   position: relative;
   width: 100%;
   margin-top: 14px;
-  padding: 16px;
+  padding: clamp(14px, 3.5vw, 16px);
   border: none;
   border-radius: 16px;
   background: linear-gradient(135deg, #4F7CFF, #22D3C9);
   color: #0B0F17;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: clamp(14px, 4vw, 16px);
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.15s ease, opacity 0.2s ease;
@@ -302,18 +287,12 @@
   font-size: 13px;
   color: #34D399;
   animation: pop-in 0.25s ease;
+  flex-wrap: wrap;
 }
 
 @keyframes pop-in {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
-}
-
-.swap-success a {
-  color: #34D399;
-  font-weight: 600;
-  text-decoration: underline;
-  white-space: nowrap;
 }
 
 .swap-note {
@@ -356,7 +335,8 @@
   color: #F5F7FA;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: clamp(13px, 3.5vw, 14px);
+  white-space: nowrap;
 }
 
 .token-pill:hover {
@@ -375,6 +355,7 @@
 .token-chevron {
   color: #8A93A8;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .token-chevron.open {
@@ -386,6 +367,7 @@
   top: calc(100% + 8px);
   right: 0;
   min-width: 160px;
+  max-width: min(220px, 90vw);
   background: rgba(19, 24, 38, 0.98);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -422,6 +404,7 @@
 .token-check {
   color: #22D3C9;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .swap-success-link {
@@ -434,4 +417,81 @@
   cursor: pointer;
   padding: 0;
   font-family: inherit;
+}
+
+/* --- Small phones (≤360dp and similar) --- */
+@media (max-width: 380px) {
+  .swap-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .swap-title {
+    font-size: 16px;
+  }
+
+  .network-chip {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .amount-input {
+    font-size: 20px;
+  }
+
+  .token-pill {
+    padding: 5px 9px 5px 5px;
+  }
+
+  .rate-row {
+    font-size: 10.5px;
+  }
+}
+
+/* --- Tablets --- */
+@media (min-width: 600px) {
+  .swap-card-wrap {
+    max-width: 460px;
+  }
+
+  .swap-card {
+    padding: 26px;
+  }
+}
+
+/* --- Desktop / large screens --- */
+@media (min-width: 1024px) {
+  .swap-card-wrap {
+    max-width: 480px;
+  }
+
+  .swap-card {
+    padding: 28px;
+    border-radius: 28px;
+  }
+
+  .swap-title {
+    font-size: 22px;
+  }
+
+  .amount-input {
+    font-size: 30px;
+  }
+}
+
+/* --- Very short viewports (landscape phones) --- */
+@media (max-height: 480px) {
+  .swap-shell {
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .swap-card {
+    padding: 12px 16px;
+  }
+
+  .flip-row {
+    margin: -8px 0;
+  }
 }

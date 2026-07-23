@@ -1,5 +1,7 @@
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
+import { usePrivy } from "@privy-io/react-auth";
 import SmarfLogo from "../assets/icons/smarf-logo.png";
+import "./Navbar.css";
 
 export default function Navbar({
   menuOpen,
@@ -8,10 +10,30 @@ export default function Navbar({
 }) {
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
+  const { user, logout } = usePrivy();
 
-  const shortAddress = address
-    ? `${address.slice(0, 6)}...${address.slice(-4)}`
+  // Embedded Privy wallet
+  const embeddedWallet = user?.linkedAccounts?.find(
+    (account) => account.type === "wallet"
+  );
+  const embeddedAddress = embeddedWallet?.address;
+
+  // Final wallet address — external wallet takes priority, otherwise embedded
+  const walletAddress = isConnected ? address : embeddedAddress;
+  const walletConnected = !!walletAddress;
+
+  const shortAddress = walletAddress
+    ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
     : "";
+
+  const handleDisconnect = () => {
+    console.log("Disconnect clicked");
+    if (isConnected) {
+      disconnect();
+    } else {
+      logout();
+    }
+  };
 
   return (
     <header className="navbar">
@@ -41,7 +63,7 @@ export default function Navbar({
           ARC Testnet
         </div>
 
-        {!isConnected ? (
+        {!walletConnected ? (
           <button
             className="wallet-btn"
             onClick={() => setWalletModalOpen(true)}
@@ -55,10 +77,7 @@ export default function Navbar({
             </div>
             <button
               className="disconnect-btn"
-              onClick={() => {
-                console.log("Disconnect clicked");
-                disconnect();
-              }}
+              onClick={handleDisconnect}
             >
               Disconnect
             </button>

@@ -625,3 +625,241 @@ box-shadow:
 0 0 45px rgba(239,68,68,.18);
 
 }
+
+/* ============================================
+   RESPONSIVE: TABLET (max-width 1024px)
+   ============================================ */
+@media (max-width: 1024px){
+
+  .profile-page{
+    padding:28px;
+  }
+
+  .profile-hero{
+    padding:48px 30px;
+  }
+
+  .profile-hero h1{
+    font-size:42px;
+  }
+
+}
+
+/* ============================================
+   RESPONSIVE: TABLET / SMALL LAPTOP (max-width 768px)
+   ============================================ */
+@media (max-width: 768px){
+
+  .profile-page{
+    padding:20px;
+  }
+
+  .bgGlow1, .bgGlow2, .bgGlow3{
+    width:260px;
+    height:260px;
+    filter:blur(90px);
+  }
+
+  .profile-hero{
+    padding:40px 24px;
+    border-radius:28px;
+  }
+
+  .profile-logo{
+    width:104px;
+    height:104px;
+  }
+
+  .profile-logo img{
+    width:80px;
+    height:80px;
+  }
+
+  .profile-hero h1{
+    font-size:34px;
+  }
+
+  .profile-hero p{
+    font-size:16px;
+  }
+
+  .identity-card{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+    padding:20px;
+  }
+
+  .identity-status{
+    align-self:flex-start;
+  }
+
+  .wallet-card{
+    padding:20px;
+  }
+
+  .wallet-row{
+    padding:14px 0;
+  }
+
+  .profile-stats{
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+
+  .profile-stat-card{
+    padding:18px;
+  }
+
+  .profile-stat-card h2{
+    font-size:28px;
+  }
+
+  .action-btn{
+    padding:18px;
+  }
+
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE PHONES (max-width 480px)
+   ============================================ */
+@media (max-width: 480px){
+
+  .profile-page{
+    padding:14px;
+  }
+
+  .profile-hero{
+    padding:32px 16px;
+    border-radius:22px;
+  }
+
+  .profile-logo{
+    width:88px;
+    height:88px;
+  }
+
+  .profile-logo img{
+    width:66px;
+    height:66px;
+  }
+
+  .profile-hero h1{
+    font-size:26px;
+    margin-top:20px;
+  }
+
+  .profile-hero p{
+    font-size:14px;
+  }
+
+  .verified-pill{
+    padding:10px 16px;
+    font-size:13px;
+    margin-top:18px;
+  }
+
+  .identity-card{
+    padding:16px;
+    border-radius:20px;
+  }
+
+  .identity-avatar{
+    width:56px;
+    height:56px;
+  }
+
+  .identity-left h2{
+    font-size:18px;
+  }
+
+  .identity-left p{
+    font-size:13px;
+    word-break:break-all;
+  }
+
+  .identity-status{
+    font-size:13px;
+    padding:8px 14px;
+  }
+
+  .wallet-card{
+    padding:16px;
+    border-radius:22px;
+  }
+
+  .wallet-card h2{
+    font-size:18px;
+    margin-bottom:16px;
+  }
+
+  .wallet-row{
+    padding:12px 0;
+  }
+
+  .wallet-row div{
+    font-size:14px;
+  }
+
+  .wallet-address{
+    font-size:13px;
+  }
+
+  /* Stack the two stat columns into one on very small screens */
+  .profile-stats{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .profile-stat-card{
+    padding:14px;
+    border-radius:20px;
+  }
+
+  .profile-stat-card h3{
+    font-size:13px;
+  }
+
+  .profile-stat-card h2{
+    font-size:22px;
+  }
+
+  .profile-stat-card span{
+    font-size:12px;
+  }
+
+  .account-actions{
+    gap:12px;
+    margin-bottom:32px;
+  }
+
+  .action-btn{
+    padding:16px;
+    border-radius:20px;
+  }
+
+  .action-btn h3{
+    font-size:16px;
+  }
+
+  .action-btn span{
+    font-size:12px;
+  }
+
+}
+
+/* ============================================
+   RESPONSIVE: VERY SMALL PHONES (max-width 360px)
+   ============================================ */
+@media (max-width: 360px){
+
+  .profile-hero h1{
+    font-size:22px;
+  }
+
+  .profile-stats{
+    grid-template-columns:1fr;
+  }
+
+}

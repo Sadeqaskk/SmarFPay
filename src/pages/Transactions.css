@@ -825,3 +825,213 @@
   }
 
 }
+
+/* ==========================
+   Responsive: Tablet fine-tune (max-width 1024px)
+========================== */
+
+@media (max-width:1024px){
+
+  .transactions-hero h1{
+    font-size:2rem;
+  }
+
+  .tx-stat-card h2{
+    font-size:2rem;
+  }
+
+}
+
+/* ==========================
+   Responsive: Mobile phones (max-width 480px)
+========================== */
+
+@media (max-width:480px){
+
+  .transactions-page{
+    padding:14px;
+  }
+
+  .bgGlow1, .bgGlow2, .bgGlow3{
+    width:200px;
+    height:200px;
+    filter:blur(80px);
+  }
+
+  .transactions-logo{
+    width:68px;
+    height:68px;
+    border-radius:20px;
+  }
+
+  .transactions-logo img{
+    width:40px;
+  }
+
+  .transactions-hero h1{
+    font-size:1.6rem;
+  }
+
+  .transactions-hero p{
+    font-size:.85rem;
+  }
+
+  .transactions-pill{
+    font-size:.78rem;
+    padding:7px 14px;
+  }
+
+  .transactions-footer-card{
+    padding:24px 16px;
+    border-radius:20px;
+  }
+
+  .transactions-footer-card h3{
+    font-size:1.05rem;
+  }
+
+  .transactions-footer-card p{
+    font-size:.82rem;
+  }
+
+  .footer-tags span{
+    padding:6px 12px;
+    font-size:.75rem;
+  }
+
+  .transactions-stats{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .tx-stat-card{
+    padding:16px;
+    border-radius:18px;
+  }
+
+  .tx-stat-card h2{
+    font-size:1.6rem;
+  }
+
+  .tx-search{
+    min-width:0;
+    padding:13px 16px;
+    font-size:.9rem;
+  }
+
+  .tx-filter-group button{
+    padding:9px 14px;
+    font-size:.78rem;
+  }
+
+  .premium-tx-card{
+    padding:16px;
+    border-radius:18px;
+  }
+
+  .tx-icon{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+  }
+
+  .tx-left h3{
+    font-size:.92rem;
+  }
+
+  .tx-right h2{
+    font-size:1rem;
+  }
+
+  .empty-transactions{
+    padding:50px 18px;
+  }
+
+  .empty-icon{
+    width:64px;
+    height:64px;
+    font-size:30px;
+  }
+
+  .section-title, .tx-section-title{
+    font-size:1.2rem;
+  }
+
+  .timeline-item{
+    padding:14px 16px;
+  }
+
+  .timeline-icon{
+    width:42px;
+    height:42px;
+  }
+
+  .analytics-grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .analytics-card{
+    padding:16px;
+    border-radius:18px;
+  }
+
+  .analytics-card h2{
+    font-size:1.4rem;
+  }
+
+  .activity-chart, .network-status-card{
+    padding:18px;
+    border-radius:20px;
+  }
+
+  .chart-container{
+    height:110px;
+    gap:8px;
+  }
+
+  .chart-bar{
+    max-width:22px;
+  }
+
+  .chart-column span{
+    font-size:.7rem;
+  }
+
+  .network-grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .network-item{
+    padding:12px;
+  }
+
+  .transactions-footer{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .footer-card{
+    padding:18px;
+  }
+
+  .footer-card h1{
+    font-size:1.7rem;
+  }
+
+}
+
+/* ==========================
+   Responsive: Very small phones (max-width 360px)
+========================== */
+
+@media (max-width:360px){
+
+  .transactions-stats,
+  .analytics-grid,
+  .network-grid{
+    grid-template-columns:1fr;
+  }
+
+}

@@ -591,3 +591,130 @@
   .payment-actions{ grid-template-columns:1fr; }
   .payment-network{ flex-direction:column; }
 }
+
+/* ---------- SMALL PHONES (<=400px, e.g. 360dp devices) ---------- */
+@media (max-width: 400px) {
+  .request-page {
+    padding: 0 10px 40px;
+  }
+
+  .request-hero {
+    padding: 32px 16px;
+    border-radius: 24px;
+  }
+
+  .request-hero h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .request-hero p {
+    font-size: 15px;
+  }
+
+  .request-logo {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 18px;
+  }
+
+  .request-logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .token-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .token-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .amount-panel {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .amount-box {
+    padding: 16px 18px;
+    gap: 10px;
+  }
+
+  .amount-box input {
+    font-size: 28px;
+  }
+
+  .amount-token {
+    padding: 8px 12px;
+  }
+
+  .amount-token img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .quick-amounts {
+    gap: 10px;
+  }
+
+  .quick-amounts button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .request-note-card {
+    padding: 18px;
+  }
+
+  .request-note-card textarea {
+    padding: 14px;
+    height: 120px;
+    font-size: 15px;
+  }
+
+  .payment-request-card {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .payment-header {
+    gap: 12px;
+  }
+
+  .payment-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .payment-header h2 {
+    font-size: 22px;
+  }
+
+  .payment-amount h1 {
+    font-size: 32px;
+  }
+
+  .payment-wallet {
+    padding: 16px;
+  }
+
+  .payment-wallet strong {
+    font-size: 15px;
+  }
+
+  .payment-network div {
+    padding: 14px;
+  }
+
+  .qr-glass {
+    padding: 16px;
+  }
+
+  .action-btn {
+    height: 52px;
+    font-size: 14px;
+  }
+}

@@ -867,3 +867,171 @@
     width:88px;
     height:88px;
 }
+
+/* ==========================
+   Responsive: Tablet fine-tune (max-width 1024px)
+========================== */
+
+@media (max-width:1024px){
+
+  .portfolio-hero{
+    max-width:440px;
+    padding:48px 32px;
+  }
+
+  .balance-value{
+    font-size:48px;
+  }
+
+}
+
+/* ==========================
+   Responsive: Mobile phones (max-width 480px)
+========================== */
+
+@media (max-width:480px){
+
+  .portfolio-page{
+    padding:14px;
+  }
+
+  .bgGlow1, .bgGlow2, .bgGlow3{
+    width:200px;
+    height:200px;
+    filter:blur(80px);
+  }
+
+  .portfolio-hero{
+    padding:32px 18px;
+    border-radius:26px;
+  }
+
+  .portfolio-logo{
+    width:88px;
+    height:88px;
+  }
+
+  .portfolio-logo img{
+    width:56px;
+    height:56px;
+  }
+
+  .portfolio-label{
+    font-size:12px;
+  }
+
+  .balance-currency{
+    font-size:22px;
+  }
+
+  .balance-value{
+    font-size:34px;
+  }
+
+  .balance-decimal{
+    font-size:18px;
+  }
+
+  .balance-usd-tag{
+    font-size:11px;
+    padding:5px 12px;
+  }
+
+  .portfolio-profit{
+    font-size:12px;
+    padding:8px 14px;
+    margin-top:16px;
+  }
+
+  .section-header h2{
+    font-size:17px;
+  }
+
+  .section-header span{
+    font-size:12px;
+  }
+
+  .asset-card{
+    padding:16px;
+    border-radius:22px;
+  }
+
+  .asset-logo{
+    width:42px;
+    height:42px;
+  }
+
+  .asset-logo img{
+    width:26px;
+    height:26px;
+  }
+
+  .asset-left h2{
+    font-size:16px;
+  }
+
+  .asset-right h2{
+    font-size:15px;
+  }
+
+  .performance-card, .allocation-card{
+    padding:18px;
+    border-radius:22px;
+  }
+
+  .performance-header h2, .allocation-header h2{
+    font-size:16px;
+  }
+
+  .performance-chart{
+    height:80px;
+  }
+
+  .allocation-ring{
+    width:100px;
+    height:100px;
+  }
+
+  .ring-center{
+    width:68px;
+    height:68px;
+  }
+
+  .ring-center h2{
+    font-size:16px;
+  }
+
+  .allocation-row h3{
+    font-size:14px;
+  }
+
+  .stats-card{
+    padding:16px 12px;
+    border-radius:18px;
+  }
+
+  .stats-card h2{
+    font-size:18px;
+  }
+
+  .stats-card span{
+    font-size:12px;
+  }
+
+}
+
+/* ==========================
+   Responsive: Very small phones (max-width 360px)
+========================== */
+
+@media (max-width:360px){
+
+  .balance-value{
+    font-size:28px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+}

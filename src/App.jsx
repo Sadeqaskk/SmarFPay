@@ -100,6 +100,7 @@ useWatchContractEvent({
   abi: ERC20_ABI,
   eventName: "Transfer",
   pollingInterval: 15000,
+  enabled: page !== "bridge",
   onLogs(logs) {
     logs.forEach((log) => {
       const { from, to, value } = log.args;
@@ -122,6 +123,11 @@ useWatchContractEvent({
 
 
 
+// Pause background balance polling while the user is on the Bridge page,
+// so our own requests don't compete with the bridge kit's RPC calls
+// (rpc.testnet.arc.network) at the exact moment a bridge is in flight.
+const pollingPaused = page === "bridge";
+
 // USDC (native-ish balance query — no token address, matches existing behavior)
 const { 
 
@@ -137,7 +143,7 @@ const {
 
   query: { 
 
-    refetchInterval: 20000, 
+    refetchInterval: pollingPaused ? false : 20000, 
 
   }, 
 
@@ -152,7 +158,7 @@ const {
   address: walletAddress,
   token: ARC_TOKENS.EURC.address,
   query: {
-    refetchInterval: 20000,
+    refetchInterval: pollingPaused ? false : 26000,
     enabled: !!walletAddress,
   },
 });
@@ -166,7 +172,7 @@ const {
   address: walletAddress,
   token: ARC_TOKENS.cirBTC.address,
   query: {
-    refetchInterval: 20000,
+    refetchInterval: pollingPaused ? false : 32000,
     enabled: !!walletAddress,
   },
 });
@@ -277,30 +283,26 @@ case "portfolio":
       <Route
         path="*"
         element={
-          !authenticated ? (
-            <Login />
-          ) : (
-            <div className="app">
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-                setWalletModalOpen={setWalletModalOpen}
-              />
-              <Sidebar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-                setPage={setPage}
-              />
-              <main className="main-content">
-                {renderPage()}
-              </main>
-              <WalletModal
-                open={walletModalOpen}
-                onClose={() => setWalletModalOpen(false)}
-              />
-              <TransactionModal tx={selectedTx} onClose={() => setSelectedTx(null)} />
-            </div>
-          )
+          <div className="app">
+            <Navbar
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
+              setWalletModalOpen={setWalletModalOpen}
+            />
+            <Sidebar
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
+              setPage={setPage}
+            />
+            <main className="main-content">
+              {renderPage()}
+            </main>
+            <WalletModal
+              open={walletModalOpen}
+              onClose={() => setWalletModalOpen(false)}
+            />
+            <TransactionModal tx={selectedTx} onClose={() => setSelectedTx(null)} />
+          </div>
         }
       />
     </Routes>

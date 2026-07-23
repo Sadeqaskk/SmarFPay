@@ -1,206 +1,31 @@
-/* ===== Navbar shell ===== */
+/* ===========================================================
+   Navbar.css
 
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
+   IMPORTANT: The authoritative .navbar / .navbar-left / .navbar-right /
+   .brand / .smarf-logo / .network-badge / .wallet-btn / .wallet-connected /
+   .menu-btn styling already lives in App.css — that's where the navbar
+   is correctly set to `position: fixed`, `z-index: 1000` (so it always
+   stays above .sidebar at z-index 999 and .sidebar-overlay at z-index 998),
+   and where its blue/cyan color theme matches the rest of the app
+   (--primary, --accent, --purple tokens).
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+   This file previously duplicated all of those selectors with different
+   values (position: sticky, z-index: 50, a different purple palette).
+   Because component-level CSS imports load after the global App.css
+   import in the bundle, those duplicate rules were winning the cascade —
+   which dropped the navbar BELOW the sidebar/overlay in stacking order.
+   That's why opening the menu appeared to "close"/cover the SmarFPay
+   logo: the sidebar was rendering on top of a navbar that had silently
+   lost its z-index: 1000.
 
-  padding: 0.9rem 1.75rem;
+   Fix: don't redeclare any property that App.css already owns for these
+   selectors. This file is intentionally left empty of conflicting rules
+   so App.css's fixed, always-on-top, correctly-themed navbar wins
+   automatically — no JSX changes needed.
 
-  background: rgba(10, 10, 16, 0.65);
-  border-bottom: 1px solid rgba(140, 120, 255, 0.15);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-/* ===== Left cluster ===== */
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-.smarf-logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  object-fit: cover;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 16px rgba(120, 90, 255, 0.25);
-}
-
-.brand h1 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  background: linear-gradient(135deg, #ffffff, #b8c0ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.brand p {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin-top: 1px;
-}
-
-/* Hamburger menu button */
-
-.menu-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: 1px solid rgba(140, 120, 255, 0.2);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.menu-btn:hover {
-  border-color: rgba(140, 120, 255, 0.45);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.menu-btn span {
-  display: block;
-  height: 2px;
-  margin: 0 7px;
-  background: #f5f7ff;
-  border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.menu-btn.active span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-
-.menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-btn.active span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
-}
-
-/* ===== Right cluster ===== */
-
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.network-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.8rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(140, 120, 255, 0.2);
-  border-radius: 999px;
-}
-
-.network-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #34d399;
-  box-shadow: 0 0 8px 1px rgba(52, 211, 153, 0.7);
-  animation: navbar-pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes navbar-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.55; transform: scale(0.85); }
-}
-
-/* Connect button */
-
-.wallet-btn {
-  padding: 0.55rem 1.15rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #08080d;
-  background: linear-gradient(135deg, #a78bfa, #60d3ff);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 18px rgba(120, 140, 255, 0.3);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.wallet-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(120, 140, 255, 0.42);
-}
-
-.wallet-btn:active {
-  transform: translateY(0);
-}
-
-/* Connected state */
-
-.wallet-connected {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.4rem 0.35rem 0.9rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(140, 120, 255, 0.25);
-  border-radius: 999px;
-}
-
-.wallet-address {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #f5f7ff;
-  font-family: "SF Mono", "Fira Code", monospace;
-}
-
-.disconnect-btn {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
-}
-
-.disconnect-btn:hover {
-  border-color: rgba(248, 113, 113, 0.5);
-  color: #fca5a5;
-  background: rgba(248, 113, 113, 0.08);
-}
-
-/* ===== Mobile ===== */
-
-@media (max-width: 560px) {
-  .navbar {
-    padding: 0.75rem 1rem;
-  }
-
-  .brand p {
-    display: none;
-  }
-
-  .wallet-address {
-    font-size: 0.75rem;
-  }
-}
+   If you want to add something to the navbar later that ISN'T already
+   in App.css, it's safe to add new rules here as long as you don't
+   redeclare position, z-index, height, or the background/color values
+   for .navbar, .menu-btn, .wallet-btn, .network-badge, .wallet-connected,
+   or .disconnect-btn — those must stay owned by App.css.
+=========================================================== */

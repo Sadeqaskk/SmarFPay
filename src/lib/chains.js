@@ -15,8 +15,13 @@ cirBTC: {
     symbol: 'cirBTC',
     decimals: 8,
   },
+SMARF: {
+    address: '0x6942ce32f4e9a3083887f1e3112847c55d55E7B3',
+    symbol: 'SMARF',
+    decimals: 18, // ⚠️ confirm against the contract's decimals() — I'm assuming 18
+  },
 }
 
-// Presto's Hub AMM on Arc Testnet — verified via source on GitHub
+// Smarfswap's Hub AMM on Arc Testnet — verified via source in arc tesnet
 // (Emperoar07/Presto, contracts/ArcHubAMMNormalized.sol)
 export const ROUTER_ADDRESS = '0xE830C6d6a0cd69F8541AA923b6b8fAaedF377DE6'

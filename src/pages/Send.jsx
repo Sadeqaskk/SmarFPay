@@ -20,6 +20,7 @@ import { useWallets } from "@privy-io/react-auth";
 import { parseUnits, isAddress } from "viem";
 import { ERC20_ABI } from "../contracts/usdc";
 import { ARC_TOKENS } from "../lib/chains";
+import { addTransaction } from "../lib/transactions";
 
 import {
   Wallet,
@@ -58,7 +59,6 @@ export default function Send() {
 
   const [txHash, setTxHash] = useState("");
   const [success, setSuccess] = useState(false);
-  const [transactions, setTransactions] = useState([]);
 
 
   async function sendWithEmbeddedWallet() {
@@ -101,25 +101,17 @@ export default function Send() {
 
     console.log("Transaction Hash:", hash);
 
+    addTransaction({
+      type: "Sent",
+      amount: Number(amount),
+      token: token.symbol,
+      to: recipient,
+      hash,
+    });
+
     setTxHash(hash);
     setSuccess(true);
   }
-
-
-  useEffect(() => {
-    const saved = localStorage.getItem("smarf_transactions");
-
-    if (saved) {
-      setTransactions(JSON.parse(saved));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "smarf_transactions",
-      JSON.stringify(transactions)
-    );
-  }, [transactions]);
 
   const {
     writeContract,
@@ -142,23 +134,16 @@ export default function Send() {
           from.toLowerCase() === address.toLowerCase() ||
           to.toLowerCase() === address.toLowerCase()
         ) {
-          const tx = {
-            id: log.transactionHash,
-            hash: log.transactionHash,
+          addTransaction({
             type:
               from.toLowerCase() === address.toLowerCase()
                 ? "Sent"
                 : "Received",
             amount: Number(value) / 10 ** token.decimals,
             token: token.symbol,
-            from,
-            to,
-          };
-
-          setTransactions((prev) => [
-            tx,
-            ...prev,
-          ]);
+            to: from.toLowerCase() === address.toLowerCase() ? to : from,
+            hash: log.transactionHash,
+          });
         }
       });
     },
@@ -335,6 +320,13 @@ export default function Send() {
                 },
                 {
                   onSuccess(hash) {
+                    addTransaction({
+                      type: "Sent",
+                      amount: Number(amount),
+                      token: token.symbol,
+                      to: recipient,
+                      hash,
+                    });
                     setTxHash(hash);
                     setSuccess(true);
                   },

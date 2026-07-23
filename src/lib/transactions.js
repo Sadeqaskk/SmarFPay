@@ -20,7 +20,7 @@ export function addTransaction(tx) {
   const entry = {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     time: new Date().toLocaleString(),
-    status: "✅ Confirmed",
+    status: "Confirmed",
     ...tx,
   };
 

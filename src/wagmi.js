@@ -1,7 +1,6 @@
 // src/wagmi.js
 import { createConfig } from "@privy-io/wagmi";
 import { http } from "wagmi";
-import { injected, walletConnect } from "wagmi/connectors";
 
 // ================================
 // ARC TESTNET CONFIG
@@ -16,7 +15,7 @@ export const arcTestnet = {
   nativeCurrency: {
     name: "USDC",
     symbol: "USDC",
-    decimals: 18,
+    decimals: 6,
   },
   rpcUrls: {
     default: {
@@ -38,18 +37,14 @@ export const arcTestnet = {
 // ================================
 // WAGMI CONFIG
 // ================================
+// Browser Wallet + Coinbase Wallet connect through Privy's own login flow
+// (see WalletModal.jsx). WalletConnect connects via @walletconnect/ethereum-provider
+// directly in WalletModal.jsx, bypassing wagmi's connector system entirely —
+// @privy-io/wagmi's createConfig silently strips out any manually-declared
+// connectors, so a connectors array here would never actually be usable.
 
 export const config = createConfig({
   chains: [arcTestnet],
-
-  connectors: [
-    injected(),
-
-    walletConnect({
-      projectId: "ce05547a42469cc7b3e0fe02f8f0015f",
-      showQrModal: true,
-    }),
-  ],
 
   transports: {
     [arcTestnet.id]: http(),

@@ -11,19 +11,22 @@ import { useWallets } from "@privy-io/react-auth";
 import { ARC_TOKENS, ROUTER_ADDRESS } from "../lib/chains";
 import { ROUTER_ABI, ERC20_ABI } from "../lib/abis";
 import { arcTestnet } from "../wagmi";
+import { addTransaction } from "../lib/transactions";
 import "./Swap.css";
 import usdcLogo from "../assets/tokens/usdc.png";
 import eurcLogo from "../assets/tokens/eurc.png";
 import cirBTC from "../assets/tokens/cirBTC_Icon.png";
+import smarfLogo from "../assets/tokens/smarf.png";
 
 
 const TOKEN_LOGOS = {
   USDC: usdcLogo,
   EURC: eurcLogo,
   cirBTC: cirBTC,
+  SMARF: smarfLogo,
 };
 
-const TOKEN_LIST = [ARC_TOKENS.USDC, ARC_TOKENS.EURC, ARC_TOKENS.cirBTC];
+const TOKEN_LIST = [ARC_TOKENS.USDC, ARC_TOKENS.EURC, ARC_TOKENS.cirBTC, ARC_TOKENS.SMARF];
 
 function TokenDropdown({ value, onChange, exclude }) {
   const [open, setOpen] = useState(false);
@@ -135,6 +138,7 @@ export default function Swap() {
 
   const [swapHash, setSwapHash] = useState(undefined);
   const [swapPending, setSwapPending] = useState(false);
+  const [swapLogged, setSwapLogged] = useState(false);
 
   const { isLoading: approveConfirming, isSuccess: approveConfirmed } =
     useWaitForTransactionReceipt({ hash: approveHash });
@@ -145,6 +149,19 @@ export default function Swap() {
   useEffect(() => {
     if (approveConfirmed) refetchAllowance();
   }, [approveConfirmed, refetchAllowance]);
+
+  useEffect(() => {
+    if (swapConfirmed && swapHash && !swapLogged) {
+      addTransaction({
+        type: "Swap",
+        amount: amountIn,
+        token: tokenIn.symbol,
+        to: `${tokenIn.symbol} → ${tokenOut.symbol}`,
+        hash: swapHash,
+      });
+      setSwapLogged(true);
+    }
+  }, [swapConfirmed, swapHash, swapLogged, amountIn, tokenIn, tokenOut]);
 
   async function getWalletClient() {
     await activeWallet.switchChain(arcTestnet.id);
@@ -200,6 +217,7 @@ export default function Swap() {
 
     try {
       setSwapPending(true);
+      setSwapLogged(false);
 
       const walletClient = await getWalletClient();
       const [account] = await walletClient.getAddresses();
@@ -345,7 +363,7 @@ export default function Swap() {
             <span>ⓘ</span>
             <span>
               Quotes are read live from Presto's Hub AMM on Arc Testnet.
-              Prices may shift slightly between quote and confirmation.
+              Prices may shift slightly between quote and confirmation and our contract is Verified which is smarfarcswap .
             </span>
           </div>
         </div>
