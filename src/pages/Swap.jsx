@@ -16,7 +16,7 @@ import "./Swap.css";
 import usdcLogo from "../assets/tokens/usdc.png";
 import eurcLogo from "../assets/tokens/eurc.png";
 import cirBTC from "../assets/tokens/cirBTC_Icon.png";
-import smarfLogo from "../assets/tokens/smarf.png";
+import smarfLogo from "../assets/tokens/Smarf.png";
 
 
 const TOKEN_LOGOS = {
